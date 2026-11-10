@@ -1,0 +1,946 @@
+{
+  "intent": {
+    "query": "What was the closing price of Meta Platforms (META) on December 29, 2023?",
+    "region": "US",
+    "capability_lanes": [],
+    "metrics": [
+      "price"
+    ],
+    "comparisons": [],
+    "required_slots": [
+      "market_series",
+      "exact_price"
+    ],
+    "query_spec": {
+      "query": "What was the closing price of Meta Platforms (META) on December 29, 2023?",
+      "entity_candidates": [
+        "Meta Platforms"
+      ],
+      "ticker_candidates": [
+        "META"
+      ],
+      "target_strategy_year": null,
+      "data_cutoff": null,
+      "analysis_window": {
+        "period_type": "calendar",
+        "start_date": "2023-01-01",
+        "end_date": "2023-12-31",
+        "period_label": "2023",
+        "years": [
+          2023
+        ]
+      },
+      "fiscal_periods": [],
+      "filing_window": {
+        "period_type": "filing",
+        "start_date": null,
+        "end_date": null,
+        "period_label": null,
+        "years": []
+      },
+      "news_window": {
+        "period_type": "news",
+        "start_date": null,
+        "end_date": null,
+        "period_label": null,
+        "years": []
+      },
+      "metrics": [
+        "price"
+      ],
+      "comparisons": [],
+      "output_requirements": [],
+      "source": "query_inferred_bare_year:US",
+      "entity_ticker_pairs": [
+        {
+          "entity": "Meta Platforms",
+          "ticker": "META"
+        }
+      ],
+      "query_constraints": {
+        "hard": {
+          "explicit_entities": [
+            "Meta Platforms"
+          ],
+          "explicit_tickers": [
+            "META"
+          ],
+          "explicit_date_range": null,
+          "explicit_as_of": null,
+          "explicit_fiscal_periods": [],
+          "region": "US"
+        },
+        "region": "US",
+        "soft": {
+          "candidate_entities": [],
+          "candidate_tickers": [],
+          "analysis_window": {
+            "period_type": "calendar",
+            "start_date": "2023-01-01",
+            "end_date": "2023-12-31",
+            "period_label": "2023",
+            "years": [
+              2023
+            ]
+          },
+          "metrics": [
+            "price"
+          ],
+          "comparisons": [],
+          "output_requirements": [],
+          "required_slots": []
+        }
+      },
+      "canonical_instruments": [
+        {
+          "requested_name": "Meta Platforms",
+          "symbol": "META",
+          "exchange": null,
+          "region": null,
+          "currency": null,
+          "resolution_status": "explicit",
+          "source_id": null,
+          "sources_checked": [],
+          "candidates": []
+        }
+      ]
+    },
+    "instruments": [
+      {
+        "requested_name": "Meta Platforms",
+        "symbol": "META",
+        "exchange": null,
+        "region": null,
+        "currency": null,
+        "resolution_status": "explicit",
+        "source_id": null,
+        "sources_checked": [],
+        "candidates": []
+      }
+    ]
+  },
+  "windows": {
+    "output_window": {
+      "period_type": "calendar",
+      "start_date": "2023-01-01",
+      "end_date": "2023-12-31",
+      "period_label": "2023",
+      "years": [
+        2023
+      ]
+    },
+    "calculation_windows": [],
+    "data_cutoff": null,
+    "effective_tool_windows": [
+      {
+        "tool": "market_data_get_exact_price",
+        "arguments": {
+          "symbol": "META",
+          "target_date": "2023-12-29",
+          "price_field": "close",
+          "adjustment": "raw",
+          "nearest_policy": "exact",
+          "region": "US"
+        },
+        "temporal_context": {
+          "start_date": "2023-01-01",
+          "end_date": "2023-12-31",
+          "as_of_date": null,
+          "source": "query_inferred_bare_year:US"
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dag": {
+      "waves": []
+    },
+    "tool_attempts": [
+      {
+        "attempt_id": "report_0_tool_0",
+        "role": "market_data",
+        "node_id": "market_1",
+        "tool": "market_data_get_exact_price",
+        "canonical_signature": "market_data_get_exact_price:{\"adjustment\":\"raw\",\"nearest_policy\":\"exact\",\"price_field\":\"close\",\"region\":\"US\",\"symbol\":\"META\",\"target_date\":\"2023-12-29\"}",
+        "canonical_arguments": {
+          "adjustment": "raw",
+          "nearest_policy": "exact",
+          "price_field": "close",
+          "region": "US",
+          "symbol": "META",
+          "target_date": "2023-12-29"
+        },
+        "source_id": "report_0_tool_0:market_data_get_exact_price",
+        "result": {
+          "status": "success",
+          "usable": true,
+          "reason": "",
+          "result_keys": [
+            "actual_date",
+            "adj_close",
+            "adjustment",
+            "adjustment_policy",
+            "close",
+            "currency",
+            "high",
+            "is_exact_date",
+            "low",
+            "nearest_policy",
+            "open",
+            "price_field",
+            "requested_date",
+            "resolution",
+            "selected_price",
+            "source",
+            "status",
+            "symbol",
+            "temporal_metadata",
+            "volume"
+          ]
+        }
+      }
+    ],
+    "repair_stages": [],
+    "budget": {},
+    "tool_routing": {
+      "query": "What was the closing price of Meta Platforms (META) on December 29, 2023?",
+      "candidates_by_role": {
+        "market_data": [
+          {
+            "name": "market_data_get_quote",
+            "group": "market_data",
+            "description": "Get a current quote for a supported symbol and region. Data can be delayed or end-of-day by source and entitlement; it is not a guaranteed real-time feed. Symbol inputs require canonical provider-ready ticker identifiers; resolve company names before calling.",
+            "inputs": {
+              "symbol": {
+                "type": "string",
+                "required": true,
+                "description": "Ticker symbol"
+              },
+              "exchange": {
+                "type": "string",
+                "required": false,
+                "description": "Exchange code"
+              },
+              "as_of_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "start_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "end_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              }
+            },
+            "input_example": {
+              "symbol": "AAPL"
+            },
+            "output_type": "quote",
+            "output_example": {
+              "symbol": "AAPL",
+              "open": 100.25,
+              "high": 100.25,
+              "low": 100.25,
+              "close": 100.25,
+              "volume": 1000000,
+              "change": "example",
+              "change_pct": "example",
+              "timestamp": "example"
+            },
+            "sources": [
+              "akshare",
+              "yfinance",
+              "tushare",
+              "ccxt"
+            ],
+            "supported_regions": [
+              "CN",
+              "US",
+              "HK"
+            ],
+            "region": "US"
+          },
+          {
+            "name": "market_data_get_history",
+            "group": "market_data",
+            "description": "Get historical open, high, low, close, and volume data. Supported regions: CN, US, HK. If supplied, as_of_date caps future end_date values before provider routing. Availability, coverage, freshness, and entitlement depend on the configured source. Symbol inputs require canonical provider-ready ticker identifiers; resolve company names before calling.",
+            "inputs": {
+              "symbol": {
+                "type": "string",
+                "required": true
+              },
+              "start_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "end_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "as_of_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD",
+                "description": "Maximum observable date; future end_date is capped to this date."
+              },
+              "lookback": {
+                "type": "integer",
+                "required": false,
+                "default": 14
+              },
+              "interval": {
+                "type": "string",
+                "required": false,
+                "enum": [
+                  "1d",
+                  "1w",
+                  "1M"
+                ],
+                "default": "1d"
+              }
+            },
+            "input_example": {
+              "symbol": "AAPL",
+              "start_date": "[EXAMPLE_DATE]",
+              "end_date": "[EXAMPLE_DATE]",
+              "as_of_date": "[EXAMPLE_DATE]",
+              "interval": "1d"
+            },
+            "output_type": "ohlcv",
+            "output_example": [
+              {
+                "symbol": "AAPL",
+                "date": "[EXAMPLE_DATE]",
+                "open": 100.25,
+                "high": 100.25,
+                "low": 100.25,
+                "close": 100.25,
+                "volume": 1000000
+              }
+            ],
+            "sources": [
+              "akshare",
+              "yfinance",
+              "tushare"
+            ],
+            "supported_regions": [
+              "CN",
+              "US",
+              "HK"
+            ],
+            "region": "US"
+          },
+          {
+            "name": "market_data_get_exact_price",
+            "group": "market_data",
+            "description": "Get a single historical price for a canonical provider-ready ticker identifier and target date, resolving non-trading days with an explicit nearest-day policy and returning requested_date, actual_date, and is_exact_date. Resolve company names before calling.",
+            "inputs": {
+              "symbol": {
+                "type": "string",
+                "required": true
+              },
+              "target_date": {
+                "type": "string",
+                "required": true,
+                "format": "YYYY-MM-DD"
+              },
+              "price_field": {
+                "type": "string",
+                "required": false,
+                "default": "close"
+              },
+              "adjustment": {
+                "type": "string",
+                "required": false,
+                "enum": [
+                  "raw",
+                  "adjusted"
+                ],
+                "default": "raw"
+              },
+              "nearest_policy": {
+                "type": "string",
+                "required": false,
+                "enum": [
+                  "exact",
+                  "previous_trading_day",
+                  "next_trading_day",
+                  "nearest_trading_day"
+                ],
+                "default": "previous_trading_day"
+              },
+              "lookaround_days": {
+                "type": "integer",
+                "required": false,
+                "default": 10
+              },
+              "region": {
+                "type": "string",
+                "required": false,
+                "enum": [
+                  "CN",
+                  "US",
+                  "HK"
+                ],
+                "default": "US"
+              }
+            },
+            "input_example": {
+              "symbol": "NFLX",
+              "target_date": "[EXAMPLE_DATE]",
+              "nearest_policy": "previous_trading_day",
+              "region": "US"
+            },
+            "output_type": "exact_price",
+            "output_example": {
+              "symbol": "NFLX",
+              "requested_date": "[EXAMPLE_DATE]",
+              "actual_date": "[EXAMPLE_DATE]",
+              "is_exact_date": true,
+              "selected_price": 100.25,
+              "close": 100.25
+            },
+            "sources": [
+              "akshare",
+              "fmp",
+              "yfinance",
+              "tushare"
+            ],
+            "supported_regions": [
+              "CN",
+              "US",
+              "HK"
+            ],
+            "region": "US"
+          },
+          {
+            "name": "market_data_get_realtime",
+            "group": "market_data",
+            "description": "Get current market data for multiple symbols. Supported regions: CN, US. Availability, coverage, freshness, and entitlement depend on the configured source. Symbol inputs require canonical provider-ready ticker identifiers; resolve company names before calling.",
+            "inputs": {
+              "symbols": {
+                "type": "array",
+                "required": true,
+                "items": "string"
+              }
+            },
+            "input_example": {
+              "symbols": [
+                "AAPL",
+                "MSFT"
+              ]
+            },
+            "output_type": "realtime_quote",
+            "output_example": [
+              {
+                "symbol": "AAPL",
+                "price": 100.25,
+                "bid": 100.25,
+                "ask": 100.25,
+                "volume": 1000000,
+                "timestamp": "example"
+              }
+            ],
+            "sources": [
+              "akshare",
+              "tushare",
+              "ccxt"
+            ],
+            "supported_regions": [
+              "CN",
+              "US"
+            ],
+            "region": "US"
+          },
+          {
+            "name": "market_data_get_market_status",
+            "group": "market_data",
+            "description": "Get current open or closed status for major exchanges. Supported regions: US. Availability, coverage, freshness, and entitlement depend on the configured source.",
+            "inputs": {},
+            "input_example": {},
+            "output_type": "market_status",
+            "output_example": {
+              "name": "NYSE",
+              "open": true,
+              "current_time": "[EXAMPLE_TIMESTAMP]"
+            },
+            "sources": [
+              "fmp"
+            ],
+            "supported_regions": [
+              "US"
+            ],
+            "region": "US"
+          },
+          {
+            "name": "market_data_get_sectors_performance",
+            "group": "market_data",
+            "description": "Get current performance by market sector. Supported regions: US. Availability, coverage, freshness, and entitlement depend on the configured source.",
+            "inputs": {
+              "limit": {
+                "type": "integer",
+                "required": false,
+                "default": 10
+              }
+            },
+            "input_example": {
+              "limit": 10
+            },
+            "output_type": "sectors_performance",
+            "output_example": [
+              {
+                "sector": "example",
+                "change_pct": "example"
+              }
+            ],
+            "sources": [
+              "fmp"
+            ],
+            "supported_regions": [
+              "US"
+            ],
+            "region": "US"
+          },
+          {
+            "name": "market_data_get_commodity",
+            "group": "market_data",
+            "description": "Get current or historical prices for commodities. Supported regions: US. For historical requests, as_of_date caps future end_date values before provider routing. Availability, coverage, freshness, and entitlement depend on the configured source. Symbol inputs require canonical provider-ready ticker identifiers; resolve company names before calling.",
+            "inputs": {
+              "symbol": {
+                "type": "string",
+                "required": false,
+                "description": "Commodity symbol (e.g. GCUSD, WTIUSD). Omit for all commodities."
+              },
+              "start_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "end_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "as_of_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD",
+                "description": "Maximum observable date for a historical request."
+              }
+            },
+            "input_example": {
+              "symbol": "AAPL",
+              "start_date": "[EXAMPLE_DATE]",
+              "end_date": "[EXAMPLE_DATE]",
+              "as_of_date": "[EXAMPLE_DATE]"
+            },
+            "output_type": "commodity_data",
+            "output_example": [
+              {
+                "symbol": "AAPL",
+                "name": "Example Company",
+                "price": 100.25,
+                "change": "example",
+                "change_pct": "example"
+              }
+            ],
+            "sources": [
+              "fmp",
+              "yfinance"
+            ],
+            "supported_regions": [
+              "US"
+            ],
+            "region": "US"
+          },
+          {
+            "name": "market_data_get_forex",
+            "group": "market_data",
+            "description": "Get current or historical foreign-exchange data. Supported regions: US. For historical requests, as_of_date caps future end_date values before provider routing. Availability, coverage, freshness, and entitlement depend on the configured source. Symbol inputs require canonical provider-ready ticker identifiers; resolve company names before calling.",
+            "inputs": {
+              "symbol": {
+                "type": "string",
+                "required": false,
+                "description": "Forex pair (e.g. EURUSD, GBPUSD). Omit for all pairs."
+              },
+              "start_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "end_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "as_of_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD",
+                "description": "Maximum observable date for a historical request."
+              }
+            },
+            "input_example": {
+              "symbol": "AAPL",
+              "start_date": "[EXAMPLE_DATE]",
+              "end_date": "[EXAMPLE_DATE]",
+              "as_of_date": "[EXAMPLE_DATE]"
+            },
+            "output_type": "forex_data",
+            "output_example": [
+              {
+                "symbol": "AAPL",
+                "name": "Example Company",
+                "price": 100.25,
+                "change": "example",
+                "change_pct": "example"
+              }
+            ],
+            "sources": [
+              "fmp",
+              "yfinance"
+            ],
+            "supported_regions": [
+              "US"
+            ],
+            "region": "US"
+          },
+          {
+            "name": "market_data_get_multi_history",
+            "group": "market_data",
+            "description": "Get historical OHLCV data for multiple symbols. Supported regions: CN, US. If supplied, as_of_date caps future end_date values before provider routing. Availability, coverage, freshness, and entitlement depend on the configured source. Symbol inputs require canonical provider-ready ticker identifiers; resolve company names before calling.",
+            "inputs": {
+              "symbols": {
+                "type": "array",
+                "required": true,
+                "items": "string"
+              },
+              "start_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "end_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "as_of_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD",
+                "description": "Maximum observable date shared by every symbol request."
+              },
+              "lookback": {
+                "type": "integer",
+                "required": false,
+                "default": 14
+              },
+              "interval": {
+                "type": "string",
+                "required": false,
+                "default": "1d"
+              },
+              "region": {
+                "type": "string",
+                "required": false,
+                "default": "US"
+              }
+            },
+            "input_example": {
+              "symbols": [
+                "AAPL",
+                "MSFT"
+              ],
+              "start_date": "[EXAMPLE_DATE]",
+              "end_date": "[EXAMPLE_DATE]",
+              "as_of_date": "[EXAMPLE_DATE]",
+              "interval": "1d",
+              "region": "US"
+            },
+            "output_type": "multi_ohlcv",
+            "output_example": {
+              "AAPL": [
+                {
+                  "symbol": "AAPL",
+                  "date": "[EXAMPLE_DATE]",
+                  "open": 187.15,
+                  "high": 188.44,
+                  "low": 183.89,
+                  "close": 185.64,
+                  "volume": 82488700
+                }
+              ]
+            },
+            "sources": [
+              "akshare",
+              "yfinance",
+              "tushare",
+              "fmp"
+            ],
+            "supported_regions": [
+              "CN",
+              "US"
+            ],
+            "region": "US"
+          }
+        ],
+        "quant_technical": [],
+        "fundamental_event": [
+          {
+            "name": "market_data_get_rating",
+            "group": "market_data",
+            "description": "Get FMP stable financial-rating snapshots or history for a US symbol. This is a ratio-based company rating, not an analyst upgrade/downgrade grade feed. Symbol inputs require canonical provider-ready ticker identifiers; resolve company names before calling.",
+            "inputs": {
+              "symbol": {
+                "type": "string",
+                "required": true,
+                "description": "Ticker symbol"
+              },
+              "limit": {
+                "type": "integer",
+                "required": false,
+                "default": 10,
+                "description": "Number of historical ratings (1=current only)"
+              },
+              "start_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "end_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "as_of_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              }
+            },
+            "input_example": {
+              "symbol": "AAPL",
+              "limit": 10
+            },
+            "output_type": "rating",
+            "output_example": [
+              {
+                "symbol": "AAPL",
+                "date": "[EXAMPLE_DATE]",
+                "rating_recommendation": "example",
+                "rating_score_dcf": 0.12,
+                "rating_score_roe": 0.12,
+                "rating_score_roa": 0.12,
+                "rating_score_de": 0.12,
+                "rating_score_pe": 0.12,
+                "rating_score_pb": 0.12
+              }
+            ],
+            "sources": [
+              "fmp"
+            ],
+            "supported_regions": [
+              "US"
+            ],
+            "region": "US"
+          },
+          {
+            "name": "market_data_get_key_metrics",
+            "group": "market_data",
+            "description": "Get valuation, profitability, leverage, and dividend metrics. Supported regions: US. Availability, coverage, freshness, and entitlement depend on the configured source. Symbol inputs require canonical provider-ready ticker identifiers; resolve company names before calling.",
+            "inputs": {
+              "symbol": {
+                "type": "string",
+                "required": true,
+                "description": "Ticker symbol"
+              },
+              "period": {
+                "type": "string",
+                "required": false,
+                "enum": [
+                  "annual",
+                  "quarterly",
+                  "ttm"
+                ],
+                "default": "annual"
+              },
+              "limit": {
+                "type": "integer",
+                "required": false,
+                "default": 10
+              },
+              "start_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "end_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              },
+              "as_of_date": {
+                "type": "string",
+                "required": false,
+                "format": "YYYY-MM-DD"
+              }
+            },
+            "input_example": {
+              "symbol": "AAPL",
+              "limit": 10
+            },
+            "output_type": "key_metrics",
+            "output_example": [
+              {
+                "symbol": "AAPL",
+                "date": "[EXAMPLE_DATE]",
+                "market_cap": 100.25,
+                "pe_ratio": 0.12,
+                "ps_ratio": 0.12,
+                "pb_ratio": 0.12,
+                "ev_to_sales": "example",
+                "ev_to_ebitda": "example",
+                "roe": "example",
+                "roa": "example",
+                "debt_to_equity": "example",
+                "dividend_yield": 0.12,
+                "free_cash_flow_yield": 0.12
+              }
+            ],
+            "sources": [
+              "fmp"
+            ],
+            "supported_regions": [
+              "US"
+            ],
+            "region": "US"
+          }
+        ]
+      },
+      "region": "US",
+      "expected_tool_types": [
+        "MarketDataProvider"
+      ]
+    }
+  },
+  "recipe": {
+    "steps": [
+      {
+        "role": "market_data",
+        "node_id": "market_1",
+        "tool": "market_data_get_exact_price",
+        "arguments_template": {
+          "adjustment": "raw",
+          "nearest_policy": "exact",
+          "price_field": "close",
+          "region": "US",
+          "symbol": "{{instrument.symbol}}",
+          "target_date": "2023-12-29"
+        },
+        "canonical_signature": "market_data_get_exact_price:{\"adjustment\":\"raw\",\"nearest_policy\":\"exact\",\"price_field\":\"close\",\"region\":\"US\",\"symbol\":\"META\",\"target_date\":\"2023-12-29\"}"
+      }
+    ]
+  },
+  "evidence": {
+    "required_slots": [
+      "market_series",
+      "exact_price"
+    ],
+    "all_required_slots_covered": true,
+    "slots": {},
+    "final_facts": [],
+    "source_ids": [
+      "market_1::market_data_get_exact_price:0"
+    ],
+    "source_statuses": {
+      "market_1::market_data_get_exact_price:0": "success"
+    },
+    "temporal_validation": {
+      "status": "pass",
+      "facts": [
+        {
+          "fact_index": 0,
+          "status": "pass",
+          "reasons": [],
+          "confidence_cap": 1.0
+        },
+        {
+          "fact_index": 1,
+          "status": "pass",
+          "reasons": [],
+          "confidence_cap": 1.0
+        }
+      ]
+    }
+  },
+  "outcome": {
+    "workflow_status": "success",
+    "answer_validation": {
+      "valid": true,
+      "status": "verified",
+      "errors": [],
+      "warnings": [],
+      "source_ids": [
+        "market_1::market_data_get_exact_price:0"
+      ],
+      "source_statuses": {
+        "market_1::market_data_get_exact_price:0": "success"
+      },
+      "temporal_validation": {
+        "status": "pass",
+        "facts": [
+          {
+            "fact_index": 0,
+            "status": "pass",
+            "reasons": [],
+            "confidence_cap": 1.0
+          },
+          {
+            "fact_index": 1,
+            "status": "pass",
+            "reasons": [],
+            "confidence_cap": 1.0
+          }
+        ]
+      },
+      "coverage": {
+        "required_slots": [
+          "market_series",
+          "exact_price"
+        ],
+        "covered_slots": [
+          "exact_price",
+          "market_series"
+        ],
+        "missing_slots": [],
+        "required_structured_slots": [
+          "exact_price"
+        ],
+        "missing_structured_slots": []
+      }
+    },
+    "benchmark_evaluation": {
+      "status": "verified",
+      "answer_match": true,
+      "match_type": "expected_substring",
+      "status_detail": "deterministically_scored"
+    },
+    "gaps": [],
+    "conflicts": []
+  },
+  "promotion": {
+    "eligible": false,
+    "reasons": [
+      "workflow_status_not_pass",
+      "final_facts_missing"
+    ]
+  }
+}
